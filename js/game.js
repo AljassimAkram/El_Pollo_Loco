@@ -20,6 +20,7 @@ backgroundMusic.loop = true;
  */
 function setupGameStatus() {
     if (world && world.soundManager) { world.soundManager.stopAudio(); }
+    if (world && world.stopStatusSounds) { world.stopStatusSounds(); }
     backgroundAudio.forEach((audio) => {
         audio.pause();
         audio.currentTime = 0;
@@ -32,20 +33,6 @@ function setupGameStatus() {
     homeMusic.play().catch(() => { });
     checkGameActive();
     checkMuteStatus();
-}
-
-/**
- * Stops all background audio (effects + music).
- */
-function stopBackgroundAudio() {
-    backgroundAudio.forEach(audio => {
-        audio.pause();
-        audio.currentTime = 0;
-    });
-    backgroundMusic.pause();
-    backgroundMusic.currentTime = 0;
-    homeMusic.pause();
-    homeMusic.currentTime = 0;
 }
 
 /**
@@ -90,13 +77,12 @@ function handleUIElements() {
 }
 
 /**
- * Checks if the device is mobile.
- * @returns {boolean} True if the device is mobile, false otherwise.
+ * Checks if the current device is considered "mobile"
+ * based on a maximum screen width of 800px.
+ * @returns {boolean} True if width <= 800px, false otherwise.
  */
 function isMobile() {
-    const regex =
-        /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-    return regex.test(navigator.userAgent);
+    return window.innerWidth <= 800;
 }
 
 /**

@@ -283,7 +283,6 @@ class World {
     /** Plays the victory jingle when the player defeats the Endboss. */
     playVictorySound() {
         this.soundManager.stopAudio();
-        stopBackgroundAudio();
         this.defeatSound.pause();
         this.victorySound.currentTime = 0;
         this.victorySound.play();
@@ -292,7 +291,6 @@ class World {
     /** Plays the defeat jingle when the player loses the game. */
     playDefeatSound() {
         this.soundManager.stopAudio();
-        stopBackgroundAudio();
         this.victorySound.pause();
         this.defeatSound.currentTime = 0;
         this.defeatSound.play();

@@ -57,6 +57,8 @@ function setupGameEnvironment() {
 function init() {
     setupGameStatus();
     setupGameEnvironment();
+    const game = document.getElementById('game');
+    if (game) game.classList.remove('playing');
 }
 
 /**
@@ -113,6 +115,8 @@ function gameInit() {
     hideUIElements();
     document.getElementById("exit-btn").classList.remove("d-none");
     world = new World(canvas, keyboard);
+    const game = document.getElementById('game');
+    if (game) game.classList.add('playing');
 }
 
 
@@ -178,6 +182,8 @@ function exitGame() {
             world.statusManager.clearAllIntervals();
         }
     }
+    const game = document.getElementById('game');
+    if (game) game.classList.remove('playing');
     init();
 }
 

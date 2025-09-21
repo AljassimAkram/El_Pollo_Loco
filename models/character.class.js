@@ -278,7 +278,6 @@ class Character extends MovebaleObject {
   /** Plays the hurt sound effect. */
   playHurtAudio() {
     this.hurtSound.pause();
-    this.hurtSound.currentTime = 0.5;
     this.safePlay(this.hurtSound);
     this.hasPlayedAudio = true;
   }

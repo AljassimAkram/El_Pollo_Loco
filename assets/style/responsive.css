@@ -31,10 +31,7 @@
     .button-space{
         padding: 4px 40px;
     }
-    .btn-impressum {
-        height: 50px;
-        margin-top: 6px;
-    }
+   
     .icon {
       width: 60px;
     }
@@ -48,11 +45,6 @@
    
     .button-space{
         padding: 2px 10px;
-        font-size: 16px;
-    }
-    .btn-impressum {
-        height: 35px;
-        margin-top: 12px;
         font-size: 16px;
     }
     .icon {
@@ -84,10 +76,6 @@
     }
     .button-space{
         padding: 4px 40px;
-    }
-    .btn-impressum {
-        height: 50px;
-        margin-top: 6px;
     }
     .icon {
       width: 60px;

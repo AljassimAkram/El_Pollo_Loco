@@ -63,7 +63,7 @@
             </button>
         </div>
 
-        <div onclick="event.stopPropagation" id="help-bar" class="help-bar d-flex w-100 d-none">
+        <div onclick="event.stopPropagation()" id="help-bar" class="help-bar d-flex w-100 d-none">
             <div class="center-column">
                 <img class="icon" src="./assets/icons/arrow-left.png" alt="">
                 <p>Move Left</p>
@@ -87,12 +87,8 @@
                 <img class="icon" src="./assets/icons/letter-d.png" alt="">
                 <p>Throw </p>
             </div>
-            <div class="key">|</div>
-            <div class="center-column btn-impressum">
-                <div onclick="toggleImpressum()" class="impressum">Impressum</div>
-            </div>
-
         </div>
+
 
         <div onclick="event.stopPropagation()" id="screen-btns" class="screen-btns">
             <button id="open-fullscreen-btn" onclick="fullscreen()" class="btn screen-size"> <img
@@ -132,7 +128,9 @@
                     id="throw-btn">
                     <img class="btn mobile-action-btn" src="./assets/icons/bottle.png" alt="">
                 </button>
+
             </div>
+
         </div>
 
 
@@ -143,6 +141,9 @@
             </div>
             <span>Please turn your Device!</span>
         </div>
+
+        <div id="impressum-chip" class="impressum-chip" onclick="toggleImpressum()">Impressum</div>
+
 
         <div id="impressum-overlay" onclick="toggleImpressum()" class="overlay d-none center-column w-100 h-100">
             <div onclick="event.stopPropagation()" class="impressum-content">

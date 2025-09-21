@@ -6,7 +6,6 @@
 html,
 body {
     height: 100dvh;
-    overflow: hidden;
 
 }
 
@@ -16,27 +15,41 @@ body {
     background-position: center;
 }
 
-canvas {
-    display: block;
-    border-radius: 8px;
-
+.game {
+  position: relative;
+  width: min(100%, var(--game-width)); 
+  aspect-ratio: 870 / 480;            
+  height: auto;                       
 }
 
-.game {
-    display: block;
-    position: relative;
-    max-width: var(--game-width);
-    height: var(--game-height);
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 8px;
+  aspect-ratio: 870 / 480;
 }
 
 .game-overlay {
-    position: absolute;
-    max-width: var(--game-width);
-    min-width: 100%;
-    max-height: var(--game-height);
-    min-height: 100%;
-    border-radius: 8px;
+  position: absolute;
+  inset: 0;               
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: cover;     
+  z-index: 1;             
+  pointer-events: none;  
 }
+
+#game-btns,
+.screen-btns,
+.mute-container,
+.help-bar,
+.impressum-chip {
+  position: absolute;
+  z-index: 2;       
+}
+
 
 .btn-row {
     position: absolute;
@@ -92,8 +105,8 @@ canvas {
 .help-bar {
     position: absolute;
     bottom: 0px;
-    padding: 15px;
-    justify-content: space-between;
+    padding: 45px;
+    justify-content: space-around;
     background-color: var(--bg-shadow-light);
 }
 
@@ -113,24 +126,23 @@ canvas {
     margin-top: 0;
 }
 
-.btn-impressum{
-    cursor: pointer;
-    background: linear-gradient(49deg, #E5921A, #F7C802);
-    padding: 10px;
-    height: 75px;
-    margin-top: 8px;
-    border-radius: 8px;
-    font-size: 28px;
-    
+.impressum-chip {
+  position: absolute;
+  bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.45);
+  color: #F7C802;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 5;
+  user-select: none;
 }
 
-.btn-impressum:hover{
-    filter: brightness(1.1);
+#game.playing #impressum-chip {
+  display: none;
 }
 
-.impressum{
-    color: white;
-}
 
 .icon {
     width: 85px;

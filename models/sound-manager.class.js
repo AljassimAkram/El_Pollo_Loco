@@ -119,9 +119,7 @@ class SoundManager {
     */
     stopWorldSounds() {
         if (!this.world) return;
-
         this.stopCharacterAndStatusSounds();
-
         if (this.world.level) {
             this.stopLevelSounds(this.world.level);
         }
@@ -157,7 +155,6 @@ class SoundManager {
         if (level.enemies) {
             level.enemies.forEach((enemy) => this.resetEnemySounds(enemy));
         }
-
         if (level.throwableObjects) {
             level.throwableObjects.forEach((obj) => {
                 if (obj instanceof ThrowableObject) {
@@ -213,7 +210,6 @@ class SoundManager {
         backgroundMusic.volume = 0.04;
         backgroundAudio[randomNumber].play();
         backgroundMusic.play();
-
         let randomInterval = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
         this.audioTimeoutId = setTimeout(() => this.playAudio(), randomInterval);
     }

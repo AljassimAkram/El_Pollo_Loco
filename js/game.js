@@ -35,6 +35,20 @@ function setupGameStatus() {
 }
 
 /**
+ * Stops all background audio (effects + music).
+ */
+function stopBackgroundAudio() {
+    backgroundAudio.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+    backgroundMusic.pause();
+    backgroundMusic.currentTime = 0;
+    homeMusic.pause();
+    homeMusic.currentTime = 0;
+}
+
+/**
  * Sets up canvas, game elements, orientation and UI.
  */
 function setupGameEnvironment() {

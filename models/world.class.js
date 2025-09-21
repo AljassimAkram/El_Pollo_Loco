@@ -10,8 +10,7 @@ class World {
     bottelbar = new Bottelbar();
     endbossbar = new EndbossBar();
     coinbar = new Coinbar();
-    msg = new GameOverMsg();
-    winMsg = new WinMsg();
+    statusMsg = new GameStatusMsg();
     characterSounds = [];
     statusSounds = [];
     soundManager;
@@ -275,8 +274,7 @@ class World {
         this.addAllElements();
         this.ctx.translate(-this.camera_x, 0);
         this.drawStatusBars();
-        this.addToMap(this.msg);
-        this.addToMap(this.winMsg);
+        this.addToMap(this.statusMsg);
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
         requestAnimationFrame(() => this.draw());
@@ -284,6 +282,8 @@ class World {
 
     /** Plays the victory jingle when the player defeats the Endboss. */
     playVictorySound() {
+        this.soundManager.stopAudio();
+        stopBackgroundAudio();
         this.defeatSound.pause();
         this.victorySound.currentTime = 0;
         this.victorySound.play();
@@ -291,6 +291,8 @@ class World {
 
     /** Plays the defeat jingle when the player loses the game. */
     playDefeatSound() {
+        this.soundManager.stopAudio();
+        stopBackgroundAudio();
         this.victorySound.pause();
         this.defeatSound.currentTime = 0;
         this.defeatSound.play();

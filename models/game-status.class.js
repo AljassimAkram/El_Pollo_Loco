@@ -47,7 +47,7 @@ class GameStatusManager {
             this.world.playDefeatSound();
             this.defeatSoundPlayed = true;
         }
-        this.world.msg.y = 0;
+        this.world.statusMsg.showDefeat();
         this.stopGame(760);
     }
 
@@ -60,7 +60,7 @@ class GameStatusManager {
             this.world.playVictorySound();
             this.victorySoundPlayed = true;
         }
-        this.world.winMsg.y = 0;
+        this.world.statusMsg.showVictory();
         this.stopGame(1160);
     }
 

@@ -15,6 +15,7 @@ class Character extends MovebaleObject {
   coins = 0;
   energy = 100;
   damage = 100;
+  currentAnim = "idle";
   walkingSound = new Audio("./assets/audio/walk.mp3");
   jumpingSound = new Audio("./assets/audio/jump.mp3");
   hurtSound = new Audio("./assets/audio/hurt.mp3");
@@ -158,18 +159,14 @@ class Character extends MovebaleObject {
     return this.world.keyboard.LEFT && this.x > -100;
   }
 
-  /**
-   * Moves the character to the right.
-   */
+  /** Moves the character to the right. */
   handleMoveRight() {
     this.walkRight(this.speed);
     this.otherDirection = false;
     this.lastMove = new Date().getTime();
   }
 
-  /**
-   * Moves the character to the left.
-   */
+  /** Moves the character to the left. */
   handleMoveLeft() {
     this.walkLeft(this.speed);
     this.otherDirection = true;
@@ -182,7 +179,8 @@ class Character extends MovebaleObject {
    */
   handleJump() {
     if (this.world.keyboard.UP && !this.isAboveGround()) {
-      this.jump(110);
+      this.resetAnimationFrame();
+      this.jump(105);
       this.playJumpAudio();
       this.lastMove = new Date().getTime();
     } else if (this.gravity == 0) {
@@ -190,9 +188,7 @@ class Character extends MovebaleObject {
     }
   }
 
-  /**
-   * Plays the jumping sound effect.
-   */
+  /** Plays the jumping sound effect. */
   playJumpAudio() {
     this.jumpingSound.currentTime = 1.0;
     this.safePlay(this.jumpingSound);
@@ -208,18 +204,14 @@ class Character extends MovebaleObject {
     }
   }
 
-  /**
-   * Updates the camera position to follow the character.
-   */
+  /** Updates the camera position to follow the character.*/
   updateCameraPosition() {
     let maxCameraX = this.world.level.levelEndX - this.world.canvas.width + 100;
     let cameraOffset = -this.x + 100;
     this.world.camera_x = Math.max(-maxCameraX, Math.min(60, cameraOffset));
   }
 
-  /**
-   * Starts the animation logic.
-  */
+  /** Starts the animation logic.*/
   handleAnimations() {
     setInterval(() => this.applyAnimationForState(), 100);
   }
@@ -238,6 +230,11 @@ class Character extends MovebaleObject {
 
   /** Executes the appropriate animation based on the current state.*/
   applyAnimationForState() {
+    const state = this.getAnimationState();
+    if (state !== this.currentAnim) {
+      this.resetAnimationFrame();
+      this.currentAnim = state;
+    }
     switch (this.getAnimationState()) {
       case "dead": this.playDeathAnimation(); this.playDeathAudio(); this.stopSnoring(); break;
       case "hurt": this.playHurtAnimation(); this.stopSnoring(); break;
@@ -334,6 +331,11 @@ class Character extends MovebaleObject {
     this.stompSound.volume = 1;
   }
 
+  /** Resets the animation frame so the next animation always starts at frame 0. */
+  resetAnimationFrame() {
+    this.currentImage = 0;
+  }
+
   /**
   * Starts the walking sound if it is not already playing.
   * Uses safePlay() to avoid promise or autoplay errors.
@@ -382,8 +384,7 @@ class Character extends MovebaleObject {
    * Ensures that no character audio keeps playing after the game ends.
    */
   stopAllAudio() {
-    this.stopSnoring();
-    [
+    this.stopSnoring();[
       this.walkingSound,
       this.jumpingSound,
       this.hurtSound,

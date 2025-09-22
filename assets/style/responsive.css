@@ -20,6 +20,10 @@
         border-radius: unset;
     }
 
+    .impressum-content {
+      padding: 20px 24px;      
+    }
+
 }
 
 @media only screen and (max-height:850px){
@@ -63,6 +67,9 @@
     .mobile-action-btn {
       width: 70px;
     }
+    .impressum-content {
+      padding: 20px 70px;      
+    }
 }
 
 
@@ -102,6 +109,9 @@
 
     #close-fullscreen-btn {
         display: block !important;
+    }
+    .impressum-content {
+      padding: 20px 100px;      
     }
 }
 

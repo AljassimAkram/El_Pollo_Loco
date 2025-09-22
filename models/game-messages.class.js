@@ -13,14 +13,24 @@ class GameStatusMsg extends MovebaleObject {
         super().loadImage(GameStatusMsg.IMAGE_PATHS.defeat);
     }
 
+     /**
+     * Shows the defeat message on screen.
+     */
     showDefeat() {
         this.show("defeat");
     }
 
+    /**
+     * Shows the victory message on screen.
+     */
     showVictory() {
         this.show("victory");
     }
 
+    /**
+     * Displays a specific game status message.
+     * @param {"defeat"|"victory"} type - The type of message to show.
+     */
     show(type) {
         const imagePath = GameStatusMsg.IMAGE_PATHS[type];
         if (!imagePath) return;
@@ -28,6 +38,9 @@ class GameStatusMsg extends MovebaleObject {
         this.y = 0;
     }
 
+    /**
+     * Hides the game status message by moving it off-screen.
+     */
     hide() {
         this.y = 480;
     }

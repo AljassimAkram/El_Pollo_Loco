@@ -27,8 +27,8 @@ class SoundManager {
     }
 
     /**
-  * Mutes all game sounds.
-  */
+     * Mutes all game sounds.
+    */
     muteSound() {
         this.muteGlobalSounds();
         this.muteWorldSounds();

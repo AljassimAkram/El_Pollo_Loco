@@ -119,8 +119,6 @@ function gameInit() {
     if (game) game.classList.add('playing');
 }
 
-
-
 /**
  * Checks the current mute status and updates the visibility of mute/unmute UI elements accordingly.
  */
@@ -212,10 +210,6 @@ function checkGameActive() {
     }, 1000 / 20);
 }
 
-/**
- * Adjusts the view based on the device orientation.
- * @param {boolean} isPortrait - True if the orientation is portrait.
- */
 /**
  * Adjusts the view based on the device orientation and width.
  * Shows the turn overlay only in portrait AND below TURN_MIN_WIDTH.

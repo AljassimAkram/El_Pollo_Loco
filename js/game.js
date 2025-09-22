@@ -77,12 +77,11 @@ function handleUIElements() {
 }
 
 /**
- * Checks if the current device is considered "mobile"
- * based on a maximum screen width of 800px.
- * @returns {boolean} True if width <= 800px, false otherwise.
+ * Checks if the device is mobile either by user-agent or screen width.
+ * @returns {boolean} True if mobile device or small screen.
  */
 function isMobile() {
-    return window.innerWidth <= 800;
+    return window.innerWidth <= 800 || window.innerHeight <= 450;
 }
 
 /**

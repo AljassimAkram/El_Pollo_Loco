@@ -216,22 +216,26 @@ function checkGameActive() {
  * Adjusts the view based on the device orientation.
  * @param {boolean} isPortrait - True if the orientation is portrait.
  */
+/**
+ * Adjusts the view based on the device orientation and width.
+ * Shows the turn overlay only in portrait AND below TURN_MIN_WIDTH.
+ * @param {boolean} isPortrait - True if the orientation is portrait.
+ */
 function checkOrientation(isPortrait) {
-    portrait = isPortrait;
-    const overlay = document.getElementById("turn-msg-overlay");
-    const gameEl = document.getElementById("game");
-    if (portrait) {
-        overlay.classList.remove("hide");
-        if (document.fullscreenElement) {
-            document.exitFullscreen().catch(() => { });
-        }
-        gameEl.classList.remove("fill-viewport");
+  portrait = isPortrait;
+  const overlay = document.getElementById("turn-msg-overlay");
+  const gameEl = document.getElementById("game");
+  const showOverlay = portrait && isMobile();
+  if (overlay) overlay.classList.toggle("hide", !showOverlay);
+  if (gameEl) {
+    if (!showOverlay && gameActive) {
+      gameEl.classList.add("fill-viewport");
     } else {
-        overlay.classList.add("hide");
-        if (gameActive) gameEl.classList.add("fill-viewport");
+      gameEl.classList.remove("fill-viewport");
     }
+  }
+  if (showOverlay && document.fullscreenElement) document.exitFullscreen().catch(() => {});
 }
-
 
 /**
  * Toggles the visibility of the help bar.
